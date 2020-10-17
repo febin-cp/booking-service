@@ -1,7 +1,7 @@
 package com.sportsbooking.intdemo.Controllers;
 
 import com.sportsbooking.intdemo.Modal.Booking;
-import com.sportsbooking.intdemo.Services.SportClass;
+import com.sportsbooking.intdemo.Services.Operations.SportClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
