@@ -1,6 +1,6 @@
 package com.sportsbooking.intdemo.Services;
 
-import com.sportsbooking.intdemo.Modal.Modal;
+import com.sportsbooking.intdemo.Modal.Booking;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ public class SportClass {
     @Autowired
     OrgsSports repository;
 
-    public Modal saveVal(Modal modal){
+    public Booking saveVal(Booking modal){
         return repository.save(modal);
     }
 }
