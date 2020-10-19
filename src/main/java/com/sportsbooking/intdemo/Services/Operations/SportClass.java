@@ -2,6 +2,7 @@ package com.sportsbooking.intdemo.Services.Operations;
 
 import com.sportsbooking.intdemo.Modal.LocationGames;
 import com.sportsbooking.intdemo.Modal.Merchant;
+import com.sportsbooking.intdemo.Services.CrudInterfaces.GameEventImpl;
 import com.sportsbooking.intdemo.Services.CrudInterfaces.LocationGamesImpl;
 import com.sportsbooking.intdemo.Services.CrudInterfaces.MerchantOnboarding;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class SportClass {
     @Autowired
     MerchantOnboarding merchantOnboarding;
 
+    @Autowired
+    GameEventImpl gameEvent;
+
     public LocationGames saveGamePerLocation(LocationGames modal){
         return locationGames.save(modal);
     }
@@ -33,5 +37,8 @@ public class SportClass {
     }
     public List<LocationGames> getGamesList(String merchId){
         return locationGames.findGamesByMerchantId(merchId);
+    }
+    public LocationGames postGameEvent(LocationGames modals){
+        return locationGames.save(modals);
     }
 }

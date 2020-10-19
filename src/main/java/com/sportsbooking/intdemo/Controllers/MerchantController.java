@@ -22,7 +22,7 @@ public class MerchantController {
 
     @PostMapping("/ticket")
     public String hello(@RequestBody LocationGames modals) {
-        dao.saveGamePerLocation(modals);
+        dao.postGameEvent(modals);
         return "Done";
     }
 
@@ -46,5 +46,10 @@ public class MerchantController {
     public List<LocationGames> hello1111(@RequestParam String merchId) {
         return dao.getGamesList(merchId);
     }
+
+//    @PostMapping("/tic")
+//    public List<LocationGames> hello1(@RequestParam String merchId) {
+//        return dao.getGamesList(merchId);
+//    }
 
 }

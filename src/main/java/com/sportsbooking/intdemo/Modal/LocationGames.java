@@ -2,10 +2,14 @@ package com.sportsbooking.intdemo.Modal;
 
 import lombok.Data;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Data
 @Entity
@@ -16,7 +20,7 @@ public class LocationGames {
     private Integer Id;
     private String merchantId;
     private String gameEvent;
-    private String capacity;
-    private String hoursOfOperation;
-    private String hourlyRate;
+    @OneToMany(targetEntity = GameEvent.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "mg_fk", referencedColumnName = "Id")
+    private List<GameEvent> gameEvents;
 }
