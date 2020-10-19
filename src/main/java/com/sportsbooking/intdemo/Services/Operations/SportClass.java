@@ -31,4 +31,7 @@ public class SportClass {
     public List<Merchant> getMerchants(){
         return merchantOnboarding.findAll();
     }
+    public List<LocationGames> getGamesList(String merchId){
+        return locationGames.findGamesByMerchantId(merchId);
+    }
 }

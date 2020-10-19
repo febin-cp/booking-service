@@ -42,4 +42,9 @@ public class MerchantController {
         return dao.getMerchants(merchId);
     }
 
+    @GetMapping("/tick")
+    public List<LocationGames> hello1111(@RequestParam String merchId) {
+        return dao.getGamesList(merchId);
+    }
+
 }
