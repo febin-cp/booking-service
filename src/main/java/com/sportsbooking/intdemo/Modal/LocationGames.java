@@ -6,15 +6,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.ArrayList;
 
 @Data
 @Entity
-@Table(name = "GameChart")
+@Table(name = "GameList")
 public class LocationGames {
     @Id
     @GeneratedValue
     private Integer Id;
-    private String locationId;
-    private ArrayList<GameEvent> gameEvent;
+    private String merchantId;
+    private String gameEvent;
+    private String capacity;
+    private String hoursOfOperation;
+    private String hourlyRate;
 }
