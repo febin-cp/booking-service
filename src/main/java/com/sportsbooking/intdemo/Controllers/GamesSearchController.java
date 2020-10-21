@@ -1,8 +1,6 @@
 package com.sportsbooking.intdemo.Controllers;
 
 import com.sportsbooking.intdemo.Modal.Hotel;
-import com.sportsbooking.intdemo.Modal.LocationGames;
-import com.sportsbooking.intdemo.Modal.Merchant;
 import com.sportsbooking.intdemo.Modal.Room;
 import com.sportsbooking.intdemo.Services.Operations.SportClass;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,49 +13,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 @RestController
-@RequestMapping("/uploadData")
-public class MerchantController {
+@RequestMapping("/apis/games")
+public class GamesSearchController {
 
     @Autowired
     SportClass dao;
 
-    @PostMapping("/ticket")
-    public String hello(@RequestBody Hotel modals) {
+    @PostMapping("/onboardMerchant")
+    public String addMerchants(@RequestBody Hotel modals) {
         dao.postGameEvent(modals);
-        return "Done";
+        return "Updated Successfully";
     }
 
-    @PostMapping("/ticket123")
-    public String hello123(@RequestBody Room modals) {
+    @PostMapping("/addGame")
+    public String addGames(@RequestBody Room modals) {
         dao.saveMerchant(modals);
-        return "Done";
+        return "Added game succesfully";
     }
 
-    @GetMapping("/ticket123")
-    public Page<Room> hello1(@RequestParam Long merchId,
+    @GetMapping("/all")
+    public Page<Room> getGamesWithMerchant(@RequestParam Long merchId,
                              Pageable pageable) {
         return dao.getMerchants(merchId, pageable);
     }
 
-    @GetMapping("/ticket123123")
+    @GetMapping("/updateMerchants")
     public void hello111() {
         dao.loadSampleData();
-
-//        return dao.getMerchants(merchId);
     }
 
-    @GetMapping("/tick")
-    public Page<Hotel> hello1111(@RequestParam String merchId,
+    @GetMapping("/location")
+    public Page<Hotel> getGamesWithLocation(@RequestParam String location,
                                  Pageable pageable) {
-        return dao.getGamesList(merchId, pageable);
+        return dao.getGamesList(location, pageable);
     }
-
-//    @PostMapping("/tic")
-//    public List<LocationGames> hello1(@RequestParam String merchId) {
-//        return dao.getGamesList(merchId);
-//    }
-
 }

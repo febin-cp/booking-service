@@ -3,7 +3,6 @@ package com.sportsbooking.intdemo.Services.Operations;
 import com.sportsbooking.intdemo.Modal.AvailableSlots;
 import com.sportsbooking.intdemo.Modal.Hotel;
 import com.sportsbooking.intdemo.Modal.Room;
-import com.sportsbooking.intdemo.Services.CrudInterfaces.GameEventImpl;
 import com.sportsbooking.intdemo.Services.CrudInterfaces.LocationGamesImpl;
 import com.sportsbooking.intdemo.Services.CrudInterfaces.MerchantOnboarding;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,29 +24,24 @@ public class SportClass {
     @Autowired
     MerchantOnboarding merchantOnboarding;
 
-    @Autowired
-    GameEventImpl gameEvent;
-
-    public Hotel saveGamePerLocation(Hotel modal){
-        return locationGames.save(modal);
-    }
 
     public Room saveMerchant(Room modal){
         return merchantOnboarding.save(modal);
     }
-//    public List<Merchant> getMerchants(String merchId){
-//        return merchantOnboarding.findByMerchantId(merchId);
-//    }
+
     public Page<Room> getMerchants(Long hotelId, Pageable pageable){
         return merchantOnboarding.findGamesByHotelId(hotelId, pageable );
     }
+
     public Page<Hotel> getGamesList(String merchId, Pageable pageable){
         Page<Hotel> games = locationGames.findGamesByLocation(merchId, pageable);
         return games;
     }
+
     public Hotel postGameEvent(Hotel modals){
         return locationGames.save(modals);
     }
+
     public void loadSampleData(){
         createHotel1();
 //        createHotel2();
@@ -76,10 +70,10 @@ public class SportClass {
         Room room1 = new Room(101,"G1",1, BigDecimal.valueOf(65.12));
 
 
-        AvailableSlots slot1 = new AvailableSlots(1 ,"1-4", "Not Available");
-        AvailableSlots slot2 = new AvailableSlots(2,"5-4", "available");
-        AvailableSlots slot3 = new AvailableSlots(3,"8-4", "Not Available");
-        AvailableSlots slot4 = new AvailableSlots(4,"0-4", "available");
+        AvailableSlots slot1 = new AvailableSlots(9 ,"1-4", "Not Available");
+        AvailableSlots slot2 = new AvailableSlots(10,"5-4", "available");
+        AvailableSlots slot3 = new AvailableSlots(12,"8-4", "Not Available");
+        AvailableSlots slot4 = new AvailableSlots(56,"0-4", "available");
 
         slots.add(slot1);
         slots.add(slot2);
