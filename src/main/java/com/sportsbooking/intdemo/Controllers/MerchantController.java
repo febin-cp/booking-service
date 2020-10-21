@@ -42,10 +42,12 @@ public class MerchantController {
         return dao.getMerchants(merchId, pageable);
     }
 
-//    @GetMapping("/ticket123123")
-//    public List<Merchant> hello111(@RequestParam String merchId) {
+    @GetMapping("/ticket123123")
+    public void hello111() {
+        dao.loadSampleData();
+
 //        return dao.getMerchants(merchId);
-//    }
+    }
 
     @GetMapping("/tick")
     public Page<Hotel> hello1111(@RequestParam String merchId,

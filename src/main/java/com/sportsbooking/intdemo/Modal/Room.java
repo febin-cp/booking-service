@@ -10,9 +10,14 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -41,10 +46,21 @@ public class Room {
 //    @OneToOne(cascade = CascadeType.ALL)
 //    private Reservation reservation;
 
+    @OneToMany(targetEntity = AvailableSlots.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "mg_fk", referencedColumnName = "Id")
+    private List<AvailableSlots> availableSlots;
+
     public Room(String roomNumber, int beds, BigDecimal costPerNight) {
         this.roomNumber = roomNumber;
         this.beds = beds;
+        this.availableSlots = new ArrayList<>();
         this.costPerNight = costPerNight;
+    }
+
+    public void addSlot(List<AvailableSlots> slots) {
+        for(AvailableSlots slot : slots){
+            availableSlots.add(slot);
+        }
     }
 
     public Room() {
@@ -64,6 +80,10 @@ public class Room {
 
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
+    }
+
+    public List<AvailableSlots> getAvailableSlots(){
+        return availableSlots;
     }
 
     public String getRoomNumber() {
