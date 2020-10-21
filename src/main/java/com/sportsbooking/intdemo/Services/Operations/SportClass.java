@@ -1,6 +1,7 @@
 package com.sportsbooking.intdemo.Services.Operations;
 
 import com.sportsbooking.intdemo.Modal.AvailableSlots;
+import com.sportsbooking.intdemo.Modal.BookingStatus;
 import com.sportsbooking.intdemo.Modal.Hotel;
 import com.sportsbooking.intdemo.Modal.Room;
 import com.sportsbooking.intdemo.Services.CrudInterfaces.LocationGamesImpl;
@@ -70,10 +71,10 @@ public class SportClass {
         Room room1 = new Room(101,"G1",1, BigDecimal.valueOf(65.12));
 
 
-        AvailableSlots slot1 = new AvailableSlots(9 ,"1-4", "Not Available");
-        AvailableSlots slot2 = new AvailableSlots(10,"5-4", "available");
-        AvailableSlots slot3 = new AvailableSlots(12,"8-4", "Not Available");
-        AvailableSlots slot4 = new AvailableSlots(56,"0-4", "available");
+        AvailableSlots slot1 = new AvailableSlots(9 ,"1-4", BookingStatus.AVAILABLE);
+        AvailableSlots slot2 = new AvailableSlots(10,"5-4", BookingStatus.NOT_AVAILABLE);
+        AvailableSlots slot3 = new AvailableSlots(12,"8-4", BookingStatus.AVAILABLE);
+        AvailableSlots slot4 = new AvailableSlots(56,"0-4", BookingStatus.AVAILABLE);
 
         slots.add(slot1);
         slots.add(slot2);
