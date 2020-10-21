@@ -2,8 +2,8 @@ package com.sportsbooking.intdemo.Services.Operations;
 
 import com.sportsbooking.intdemo.Modal.AvailableSlots;
 import com.sportsbooking.intdemo.Modal.BookingStatus;
-import com.sportsbooking.intdemo.Modal.Hotel;
-import com.sportsbooking.intdemo.Modal.Room;
+import com.sportsbooking.intdemo.Modal.Merchant;
+import com.sportsbooking.intdemo.Modal.Game;
 import com.sportsbooking.intdemo.Services.CrudInterfaces.LocationGamesImpl;
 import com.sportsbooking.intdemo.Services.CrudInterfaces.MerchantOnboarding;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,20 +25,20 @@ public class SportClass {
     MerchantOnboarding merchantOnboarding;
 
 
-    public Room saveMerchant(Room modal){
+    public Game saveMerchant(Game modal){
         return merchantOnboarding.save(modal);
     }
 
-    public Page<Room> getMerchants(Long hotelId, Pageable pageable){
-        return merchantOnboarding.findGamesByHotelId(hotelId, pageable );
+    public Page<Game> getMerchants(Long merchId, Pageable pageable){
+        return merchantOnboarding.findGamesByMerchantId(merchId, pageable );
     }
 
-    public Page<Hotel> getGamesList(String merchId, Pageable pageable){
-        Page<Hotel> games = locationGames.findGamesByLocation(merchId, pageable);
+    public Page<Merchant> getGamesList(String merchId, Pageable pageable){
+        Page<Merchant> games = locationGames.findGamesByLocation(merchId, pageable);
         return games;
     }
 
-    public Hotel postGameEvent(Hotel modals){
+    public Merchant postGameEvent(Merchant modals){
         return locationGames.save(modals);
     }
 
@@ -51,25 +50,14 @@ public class SportClass {
     }
 
     private void createHotel1() {
-        LocalTime earliestCheckInTime = LocalTime.of(9, 0);
-        LocalTime latestCheckInTime = LocalTime.of(20, 0);
-        LocalTime earliestCheckOutTime = LocalTime.of(12, 0);
-        LocalTime latestCheckOutTime = LocalTime.of(14, 0);
-        BigDecimal lateCheckoutFee = BigDecimal.valueOf(45.60);
 
         String location = "chaitime";
 
         List<AvailableSlots> slots = new ArrayList<>();
 
-        Hotel grandHotel = new Hotel((long) 1000,"The Grand", location, 2, "grandel.com.au",
-                earliestCheckInTime,
-                latestCheckInTime,
-                earliestCheckOutTime,
-                latestCheckOutTime,
-                lateCheckoutFee);
+        Merchant grandMerchant = new Merchant((long) 1000,"The Grand", location, 2, "grandel.com.au");
 
-        Room room1 = new Room(101,"G1",1, BigDecimal.valueOf(65.12));
-
+        Game game1 = new Game(101,"G1", BigDecimal.valueOf(65.12));
 
         AvailableSlots slot1 = new AvailableSlots(9 ,"1-4", BookingStatus.AVAILABLE);
         AvailableSlots slot2 = new AvailableSlots(10,"5-4", BookingStatus.NOT_AVAILABLE);
@@ -81,11 +69,11 @@ public class SportClass {
         slots.add(slot3);
         slots.add(slot4);
 
-        room1.addSlot(slots);
+        game1.addSlot(slots);
 
-        grandHotel.addRoom(room1);
+        grandMerchant.addGame(game1);
 
-        locationGames.save(grandHotel);
+        locationGames.save(grandMerchant);
     }
 
 //    private void createHotel2() {

@@ -1,15 +1,10 @@
 package com.sportsbooking.intdemo;
 
-import com.sportsbooking.intdemo.Modal.Hotel;
-import com.sportsbooking.intdemo.Modal.Room;
 import com.sportsbooking.intdemo.Services.CrudInterfaces.LocationGamesImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Component;
-
-import java.math.BigDecimal;
-import java.time.LocalTime;
 
 @Component
 @SpringBootTest
