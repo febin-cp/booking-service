@@ -23,7 +23,7 @@ import java.util.Objects;
 @Entity
 public class Room {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false, unique = true)
     private Long id;
 
     @ManyToOne
@@ -32,10 +32,6 @@ public class Room {
     @NaturalId
     @Column(nullable = false, unique = true)
     private String roomNumber;
-
-//    @Column(nullable = false)
-//    @Enumerated(EnumType.STRING)
-//    private RoomType roomType;
 
     @Column(nullable = false)
     private int beds;
@@ -50,7 +46,8 @@ public class Room {
     @JoinColumn(name = "mg_fk", referencedColumnName = "Id")
     private List<AvailableSlots> availableSlots;
 
-    public Room(String roomNumber, int beds, BigDecimal costPerNight) {
+    public Room(long id,String roomNumber, int beds, BigDecimal costPerNight) {
+        this.id = id;
         this.roomNumber = roomNumber;
         this.beds = beds;
         this.availableSlots = new ArrayList<>();

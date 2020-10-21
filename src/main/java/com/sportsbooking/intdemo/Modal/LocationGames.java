@@ -22,7 +22,7 @@ import java.util.Set;
 @Table(name = "LocationGameList")
 public class LocationGames {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false, unique = true)
     private Long id;
 
     @Column(nullable = false)
@@ -41,19 +41,4 @@ public class LocationGames {
     // Stop bidirectional relationship which cause a cycle.
     @JsonIgnore
     private Set<Merchant> merchants;
-
-//    @Column(nullable = false)
-//    private LocalTime earliestCheckInTime;
-//
-//    @Column(nullable = false)
-//    private LocalTime latestCheckInTime;
-//
-//    @Column(nullable = false)
-//    private LocalTime standardCheckOutTime;
-//
-//    @Column(nullable = false)
-//    private LocalTime latestCheckOutTime;
-//
-//    @Column(nullable = false)
-//    private BigDecimal lateCheckoutFee;
 }

@@ -23,7 +23,7 @@ import java.util.stream.Stream;
 @Entity
 public class Hotel implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false, unique = true)
     private Long id;
 
     @Column(nullable = false)
@@ -64,12 +64,13 @@ public class Hotel implements Serializable {
     private final static LocalTime DEFAULT_LATEST_CHECKOUT = LocalTime.of(22, 0);
     private final static BigDecimal DEFAULT_LATE_CHECKOUT_FEE = BigDecimal.valueOf(15.95);
 
-    public Hotel(String name, String location ,int stars, String email,
+    public Hotel(Long id,String name, String location ,int stars, String email,
                  LocalTime earliestCheckInTime,
                  LocalTime latestCheckInTime,
                  LocalTime standardCheckOutTime,
                  LocalTime latestCheckOutTime,
                  BigDecimal lateCheckoutFee) {
+        this.id = id;
         this.name = name;
         this.location = location;
         this.stars = stars;

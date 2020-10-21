@@ -2,8 +2,6 @@ package com.sportsbooking.intdemo.Services.Operations;
 
 import com.sportsbooking.intdemo.Modal.AvailableSlots;
 import com.sportsbooking.intdemo.Modal.Hotel;
-import com.sportsbooking.intdemo.Modal.LocationGames;
-import com.sportsbooking.intdemo.Modal.Merchant;
 import com.sportsbooking.intdemo.Modal.Room;
 import com.sportsbooking.intdemo.Services.CrudInterfaces.GameEventImpl;
 import com.sportsbooking.intdemo.Services.CrudInterfaces.LocationGamesImpl;
@@ -68,20 +66,20 @@ public class SportClass {
 
         List<AvailableSlots> slots = new ArrayList<>();
 
-        Hotel grandHotel = new Hotel("The Grand", location, 2, "grandel.com.au",
+        Hotel grandHotel = new Hotel((long) 1000,"The Grand", location, 2, "grandel.com.au",
                 earliestCheckInTime,
                 latestCheckInTime,
                 earliestCheckOutTime,
                 latestCheckOutTime,
                 lateCheckoutFee);
 
-        Room room1 = new Room("G1",1, BigDecimal.valueOf(65.12));
+        Room room1 = new Room(101,"G1",1, BigDecimal.valueOf(65.12));
 
 
-        AvailableSlots slot1 = new AvailableSlots("1-4", "available");
-        AvailableSlots slot2 = new AvailableSlots("5-4", "available");
-        AvailableSlots slot3 = new AvailableSlots("8-4", "available");
-        AvailableSlots slot4 = new AvailableSlots("0-4", "available");
+        AvailableSlots slot1 = new AvailableSlots(1 ,"1-4", "Not Available");
+        AvailableSlots slot2 = new AvailableSlots(2,"5-4", "available");
+        AvailableSlots slot3 = new AvailableSlots(3,"8-4", "Not Available");
+        AvailableSlots slot4 = new AvailableSlots(4,"0-4", "available");
 
         slots.add(slot1);
         slots.add(slot2);
