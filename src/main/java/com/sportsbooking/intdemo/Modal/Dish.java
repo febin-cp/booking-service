@@ -17,7 +17,7 @@ import java.util.Objects;
 
 @Data
 @Entity
-public class Game {
+public class Dish {
     @Id
     @Column(nullable = false, unique = true)
     private Long id;
@@ -27,30 +27,30 @@ public class Game {
 
     @NaturalId
     @Column(nullable = false, unique = true)
-    private String gameEvent;
+    private String dishName;
 
 
     @Column(nullable = false)
-    private BigDecimal costPerGame;
+    private BigDecimal costPerDish;
 
-    @OneToMany(targetEntity = AvailableSlots.class, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = AvailableDishes.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "mg_fk", referencedColumnName = "id")
-    private List<AvailableSlots> availableSlots;
+    private List<AvailableDishes> availableDishes;
 
-    public Game(long id, String gameEvent, BigDecimal costPerNight) {
+    public Dish(long id, String dishName, BigDecimal costPerDish) {
         this.id = id;
-        this.gameEvent = gameEvent;
-        this.availableSlots = new ArrayList<>();
-        this.costPerGame = costPerNight;
+        this.dishName = dishName;
+        this.availableDishes = new ArrayList<>();
+        this.costPerDish = costPerDish;
     }
 
-    public void addSlot(List<AvailableSlots> slots) {
-        for(AvailableSlots slot : slots){
-            availableSlots.add(slot);
+    public void addDish(List<AvailableDishes> slots) {
+        for(AvailableDishes slot : slots){
+            availableDishes.add(slot);
         }
     }
 
-    public Game() {
+    public Dish() {
     }
 
     public void setMerchant(Merchant merchant) {
@@ -61,19 +61,19 @@ public class Game {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Game game = (Game) o;
-        return Objects.equals(gameEvent, game.gameEvent);
+        Dish dish = (Dish) o;
+        return Objects.equals(dishName, dish.dishName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(gameEvent);
+        return Objects.hash(dishName);
     }
 
     @Override
     public String toString() {
-        return "Room{" +
-                "roomNumber='" + gameEvent + '\'' +
+        return "Restaurat{" +
+                "dish='" + dishName + '\'' +
                 '}';
     }
 }

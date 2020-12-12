@@ -1,7 +1,7 @@
 package com.sportsbooking.intdemo.Services.CrudInterfaces;
 
-import com.sportsbooking.intdemo.Modal.AvailableSlots;
+import com.sportsbooking.intdemo.Modal.AvailableDishes;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BookingImpl extends JpaRepository<AvailableSlots, Integer> {
+public interface BookingImpl extends JpaRepository<AvailableDishes, Integer> {
 }

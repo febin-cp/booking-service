@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 
 
-public interface LocationGamesImpl extends JpaRepository<Merchant, Long> {
-    Page<Merchant> findGamesByLocation(@Param("location") String location,
+public interface LocationDishesImpl extends JpaRepository<Merchant, Long> {
+    Page<Merchant> findDishesByLocation(@Param("location") String location,
                                        Pageable pageable);
 }

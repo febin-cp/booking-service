@@ -35,7 +35,7 @@ public class Merchant implements Serializable {
     @OneToMany(mappedBy = "merchant", cascade = CascadeType.ALL)
     // Stop bidirectional relationship which cause a cycle.
     @JsonIgnore
-    private Set<Game> games;
+    private Set<Dish> dishes;
 
     public Merchant() {
 
@@ -47,12 +47,12 @@ public class Merchant implements Serializable {
         this.location = location;
         this.stars = stars;
         this.email = email;
-        this.games = new HashSet<>();
+        this.dishes = new HashSet<>();
     }
 
-    public void addGame(Game game) {
-        games.add(game);
-        game.setMerchant(this);
+    public void addRestaurants(Dish dish) {
+        dishes.add(dish);
+        dish.setMerchant(this);
     }
 
     @Override

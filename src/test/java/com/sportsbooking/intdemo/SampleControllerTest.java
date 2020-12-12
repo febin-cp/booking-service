@@ -1,6 +1,6 @@
 package com.sportsbooking.intdemo;
 
-import com.sportsbooking.intdemo.Services.CrudInterfaces.LocationGamesImpl;
+import com.sportsbooking.intdemo.Services.CrudInterfaces.LocationDishesImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class SampleControllerTest {
 
     @Autowired
-    LocationGamesImpl locationGames;
+    LocationDishesImpl locationGames;
 
     public SampleControllerTest(){
         createHotel1();

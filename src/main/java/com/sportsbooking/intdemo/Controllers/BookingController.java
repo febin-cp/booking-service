@@ -17,12 +17,12 @@ public class BookingController {
     @PostMapping("/booking")
     public String bookSlotById(@RequestParam Integer id) {
         try {
-            if (booking.findAndBookSlot(id)) {
-                return ("Booked Successfully");
+            if (booking.findAndBookDish(id)) {
+                return ("Order Placed Successfully");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "Booking Failed";
+        return "Order Placing Failed!! Please try again later";
     }
 }
