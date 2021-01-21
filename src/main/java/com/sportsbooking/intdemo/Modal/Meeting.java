@@ -15,61 +15,56 @@ import java.util.Set;
 
 @Entity
 @Data
-public class Merchant implements Serializable {
+public class Meeting implements Serializable {
     @Id
     @Column(nullable = false, unique = true)
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String title;
 
     @Column(nullable = false)
     private String location;
 
     @Column(nullable = false)
-    private int stars;
-
-    @Column(nullable = false)
     private String email;
 
-    @OneToMany(mappedBy = "merchant", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "meeting", cascade = CascadeType.ALL)
     // Stop bidirectional relationship which cause a cycle.
     @JsonIgnore
-    private Set<Dish> dishes;
+    private Set<EmployMeeting> employMeetings;
 
-    public Merchant() {
+    public Meeting() {
 
     }
 
-    public Merchant(Long id, String name, String location, int stars, String email) {
+    public Meeting(Long id, String title, String location, String email) {
         this.id = id;
-        this.name = name;
+        this.title = title;
         this.location = location;
-        this.stars = stars;
         this.email = email;
-        this.dishes = new HashSet<>();
+        this.employMeetings = new HashSet<>();
     }
 
-    public void addRestaurants(Dish dish) {
-        dishes.add(dish);
-        dish.setMerchant(this);
+    public void addMeetings(EmployMeeting employMeeting) {
+        employMeetings.add(employMeeting);
+        employMeeting.setMeeting(this);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Merchant merchant = (Merchant) o;
-        return Objects.equals(location, merchant.location) &&
-                Objects.equals(email, merchant.email);
+        Meeting meeting = (Meeting) o;
+        return Objects.equals(location, meeting.location) &&
+                Objects.equals(email, meeting.email);
     }
 
 
     @Override
     public String toString() {
-        return "Merchant{" +
+        return "Meeting{" +
                 "id=" + id +
-                ", stars=" + stars +
                 ", email='" + email + '\'' +
                 '}';
     }

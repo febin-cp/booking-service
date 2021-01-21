@@ -17,63 +17,63 @@ import java.util.Objects;
 
 @Data
 @Entity
-public class Dish {
+public class EmployMeeting {
     @Id
     @Column(nullable = false, unique = true)
     private Long id;
 
     @ManyToOne
-    private Merchant merchant;
+    private Meeting meeting;
 
     @NaturalId
     @Column(nullable = false, unique = true)
-    private String dishName;
+    private String meetingOwner;
 
 
     @Column(nullable = false)
-    private BigDecimal costPerDish;
+    private BigDecimal duration;
 
-    @OneToMany(targetEntity = AvailableDishes.class, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = AvailableEmployees.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "mg_fk", referencedColumnName = "id")
-    private List<AvailableDishes> availableDishes;
+    private List<AvailableEmployees> availableEmployees;
 
-    public Dish(long id, String dishName, BigDecimal costPerDish) {
+    public EmployMeeting(long id, String meetingOwner, BigDecimal duration) {
         this.id = id;
-        this.dishName = dishName;
-        this.availableDishes = new ArrayList<>();
-        this.costPerDish = costPerDish;
+        this.meetingOwner = meetingOwner;
+        this.availableEmployees = new ArrayList<>();
+        this.duration = duration;
     }
 
-    public void addDish(List<AvailableDishes> slots) {
-        for(AvailableDishes slot : slots){
-            availableDishes.add(slot);
+    public void addEmployee(List<AvailableEmployees> slots) {
+        for(AvailableEmployees slot : slots){
+            availableEmployees.add(slot);
         }
     }
 
-    public Dish() {
+    public EmployMeeting() {
     }
 
-    public void setMerchant(Merchant merchant) {
-        this.merchant = merchant;
+    public void setMeeting(Meeting meeting) {
+        this.meeting = meeting;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Dish dish = (Dish) o;
-        return Objects.equals(dishName, dish.dishName);
+        EmployMeeting employMeeting = (EmployMeeting) o;
+        return Objects.equals(meetingOwner, employMeeting.meetingOwner);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(dishName);
+        return Objects.hash(meetingOwner);
     }
 
     @Override
     public String toString() {
-        return "Restaurat{" +
-                "dish='" + dishName + '\'' +
+        return "Meeting{" +
+                "employees='" + meetingOwner + '\'' +
                 '}';
     }
 }

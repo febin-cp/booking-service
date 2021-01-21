@@ -8,19 +8,19 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class AvailableDishes {
+public class AvailableEmployees {
     @Id
     @Column(nullable = false, unique = true)
-    private Integer id;
+    private Integer employeeId;
     private String slot;
     private BookingStatus status;
 
-    public AvailableDishes(){
+    public AvailableEmployees(){
 
     }
 
-    public AvailableDishes(int id, String slot, BookingStatus status){
-        this.id = id;
+    public AvailableEmployees(int employeeId, String slot, BookingStatus status){
+        this.employeeId = employeeId;
         this.slot = slot;
         this.status = status;
     }

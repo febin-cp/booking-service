@@ -8,21 +8,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("apis/transaction")
-public class BookingController {
+@RequestMapping("apis/action")
+public class ActionController {
 
     @Autowired
     BookingService booking;
 
-    @PostMapping("/booking")
+    @PostMapping("/reject")
     public String bookSlotById(@RequestParam Integer id) {
         try {
-            if (booking.findAndBookDish(id)) {
-                return ("Order Placed Successfully");
+            if (booking.findAndAcceptMeeting(id)) {
+                return ("Meeting Request Accepted Successfully");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "Order Placing Failed!! Please try again later";
+        return "Something went wrong! Please try again later...";
     }
 }

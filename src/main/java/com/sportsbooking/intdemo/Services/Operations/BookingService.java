@@ -1,6 +1,6 @@
 package com.sportsbooking.intdemo.Services.Operations;
 
-import com.sportsbooking.intdemo.Modal.AvailableDishes;
+import com.sportsbooking.intdemo.Modal.AvailableEmployees;
 import com.sportsbooking.intdemo.Modal.BookingStatus;
 import com.sportsbooking.intdemo.Services.CrudInterfaces.BookingImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,20 +16,20 @@ public class BookingService {
     @Autowired
     BookingImpl booking;
 
-    public boolean findAndBookDish(int id) {
-        Optional<AvailableDishes> dish = booking.findById(id);
-        System.out.println("Slot fetched" + dish);
-        if (dish.isPresent()) {
-            AvailableDishes updateDishQuantiry = dish.get();
-            if (updateDishQuantiry.getStatus().equals(BookingStatus.AVAILABLE)) {
-                updateDishQuantiry.setStatus(BookingStatus.NOT_AVAILABLE);
-                booking.save(updateDishQuantiry);
+    public boolean findAndAcceptMeeting(int id) {
+        Optional<AvailableEmployees> meeting = booking.findById(id);
+        System.out.println("Slot fetched" + meeting);
+        if (meeting.isPresent()) {
+            AvailableEmployees updateMeetingRequest = meeting.get();
+            if (updateMeetingRequest.getStatus().equals(BookingStatus.AVAILABLE)) {
+                updateMeetingRequest.setStatus(BookingStatus.NOT_AVAILABLE);
+                booking.save(updateMeetingRequest);
                 return true;
             }  else{
-                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "No more of that dish available");
+                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Couldn't respond invite");
             }
         } else {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "No such dish in this restaurant");
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Not accepting or no meeting with the ID found!");
         }
     }
 }
